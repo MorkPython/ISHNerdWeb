@@ -5,6 +5,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Messages</title>
     <link rel="stylesheet" href="styles.css">
+    <style>
+        #messages {
+            border: 1px solid #4b0082;
+            padding: 1rem;
+            margin-top: 1rem;
+            border-radius: 5px;
+            background-color: #f0f8ff;
+        }
+        .message {
+            border-bottom: 1px solid #4b0082;
+            padding: 0.5rem 0;
+        }
+        .message:last-child {
+            border-bottom: none;
+        }
+    </style>
 </head>
 <body>
     <nav>
@@ -16,7 +32,28 @@
     </nav>
     <div class="container">
         <h1>Messages</h1>
-        <p>This is the message board for Markiian and friends.</p>
+        <textarea id="messageInput" placeholder="Write a message..." rows="4" cols="50"></textarea>
+        <button onclick="postMessage()">Post Message</button>
+        <div id="messages"></div>
     </div>
+    <script>
+        function postMessage() {
+            var messageInput = document.getElementById('messageInput');
+            var messageText = messageInput.value.trim();
+            
+            if (messageText === "") {
+                alert("Please write a message before posting.");
+                return;
+            }
+
+            var messagesDiv = document.getElementById('messages');
+            var messageDiv = document.createElement('div');
+            messageDiv.className = 'message';
+            messageDiv.textContent = messageText;
+
+            messagesDiv.appendChild(messageDiv);
+            messageInput.value = ""; // Clear the input field
+        }
+    </script>
 </body>
 </html>
